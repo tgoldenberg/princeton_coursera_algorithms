@@ -1,8 +1,8 @@
 'use strict';
 
-var fs          = require('fs');
-var path        = require('path');
-const fileName  = './uf_data.txt';
+const fs          = require('fs');
+const path        = require('path');
+const fileName    = './uf_data.txt';
 
 class UF{
   constructor(N){
