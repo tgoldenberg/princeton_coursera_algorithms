@@ -13,7 +13,7 @@ class UnionFindQuickUnion
 
 	def root(i)
 		while i != @id[i]
-			@id[i] = @id[@id[i]] #path compression
+			@id[i] = @id[@id[i]] # <- path compression
 			i = @id[i]
 		end
 		return i
@@ -30,7 +30,7 @@ class UnionFindQuickUnion
 		else
 			@id[j] = i
 			@sz[i] += @sz[j]
-		end 
+		end							# weighted QU
 	end
 end
 
