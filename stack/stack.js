@@ -24,6 +24,7 @@ class Stack{
     let item = this.first.item;
     this.first = this.first.next;
     this.size--;
+    return item;
   }
   isEmpty(){
     return this.first == 0;
@@ -34,6 +35,6 @@ let stack = new Stack();
 stack.push(1);
 console.log('STACK', stack);
 console.log(stack.isEmpty());
-stack.pop();
+console.log(stack.pop());
 console.log('STACK', stack);
 console.log(stack.isEmpty());
