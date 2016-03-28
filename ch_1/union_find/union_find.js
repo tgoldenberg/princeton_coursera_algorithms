@@ -2,7 +2,8 @@
 
 const fs          = require('fs');
 const path        = require('path');
-const fileName    = './uf_data.txt';
+const fileName    = './test_1.txt';
+// const fileName    = './uf_data.txt';
 
 class UF{
   constructor(N){
@@ -12,6 +13,7 @@ class UF{
       arr[i] = i;
     }
     this.ids = arr;
+
   }
   _count(){
     return this.count;
@@ -19,20 +21,11 @@ class UF{
   _connected(p, q){
     return this._find(p) == this._find(q);
   }
-  _find(int) {
-    let currentIdx = int,
-        result = int,
-        found = false;
-    while (! found) {
-      if (this.ids[currentIdx] == currentIdx) {
-        result = currentIdx
-        found = true;
-      } else {
-        currentIdx = this.ids[currentIdx];
-        result = this.ids[currentIdx];
-      }
+  _find(p) {
+    while (p != this.ids[p]) {
+      p = this.ids[p];
     }
-    return result;
+    return p;
   }
   _union(p, q){
     this.ids[p] = this._find(q);
