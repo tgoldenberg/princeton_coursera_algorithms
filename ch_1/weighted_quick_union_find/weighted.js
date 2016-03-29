@@ -27,8 +27,10 @@ class WeightedUnionFindUF{
     return p;
   }
   union(p, q){
+    console.log('PARAMS', p, q);
     let i = this.find(p);
     let j = this.find(q);
+    console.log('UNION', i, j, this.sz[i], this.sz[j], this.id);
     if (i == j){
       return;
     }
@@ -53,11 +55,11 @@ console.log('UF', uf, count);
 lines.forEach((line) => {
   if (! line) {return;}
   let parts = line.split(' '),
-      p = parts[0],
-      q = parts[1];
-  if (uf.connected(p, 1)) {
-    return;
-  }
+      p = parseInt(parts[0]),
+      q = parseInt(parts[1]);
+//  if (uf.connected(p, 1)) {
+//    return;
+//  }
   uf.union(p, q);
 });
 
