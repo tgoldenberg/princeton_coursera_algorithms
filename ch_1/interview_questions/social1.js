@@ -14,17 +14,47 @@ equivalence relation. The running time of your algorithm should be MlogN or
 better and use extra space proportional to N.
 
 */
-let today = new Date().valueOf();
-let members = ['Tom', 'Liz', 'Ella'];
+function randomDate(){
+  let rand = Math.floor(Math.random()*10);
+  let today = new Date().valueOf();
+  let randDate = new Date(today - rand*24*60*60*1000);
+  return randDate;
+};
+
+let members = ['Tom', 'Liz', 'Ella', 'Jerry', 'Elena', 'Jess', 'MaryKay', 'Sam'];
 let timestamps = [
   {
-    time: new Date(today - 24*7*60*60*1000).valueOf(),
+    time: randomDate(),
     members: ['Tom', 'Liz']
   },
   {
-    time: new Date(today - 24*40*60*60*1000).valueOf(),
+    time: randomDate(),
     members: ['Liz', 'Ella']
   },
+  {
+    time: randomDate(),
+    members: ['Ella', 'Sam']
+  },
+  {
+    time: randomDate(),
+    members: ['Jess', 'MaryKay']
+  },
+  {
+    time: randomDate(),
+    members: ['Elena', 'Jerry']
+  },
+  {
+    time: randomDate(),
+    members: ['Liz', 'Ella']
+  },
+  {
+    time: randomDate(),
+    members: ['Elena', 'MaryKay']
+  },
+  {
+    time: randomDate(),
+    members: ['MaryKay', 'Sam']
+  }
 ];
 
 class Member{
@@ -32,13 +62,8 @@ class Member{
     this.name = name;
     this.next = next;
   }
-  assignName(name){
-    this.name = name;
-  }
-  assignNext(next){
-    this.next = next;
-  }
 }
+
 class Network{
   constructor(){
     this.members = [];
@@ -58,7 +83,6 @@ class Network{
     if (! p.next) {
       return p;
     }
-    console.log('P', p);
     while (p.next && p.next.name != p.name){
       p = p.next;
     }
@@ -85,14 +109,15 @@ members.forEach((member) => {
   network.members.push(m)
 });
 
-console.log('NETWORK', network);
-timestamps.forEach((timestamp) => {
+console.log('INITIAL NETWORK', network);
+timestamps.forEach((timestamp, idx) => { // complexity M for for loop
+  console.log('TIMESTAMP # ', idx);
   let members = timestamp.members;
-  let member1 = network.findMember(members[0])
-  let member2 = network.findMember(members[1])
-  network.union(member1, member2);
-  console.log('UNION', network, member1, member2);
-  if (network.allConnected()){
-    console.log('TIMESTAMP', timestamp);
+  let member1 = network.findMember(members[0]) // complexity 1 to find root of member
+  let member2 = network.findMember(members[1]) // complexity 1 to find root of member
+  network.union(member1, member2); // complexity 1 to join roots
+  console.log('UNION', member1.name, member2.name);
+  if (network.allConnected()){ // complexity n-1... 1 - log N
+    console.log('ALL CONNECTED', timestamp);
   }
 })
