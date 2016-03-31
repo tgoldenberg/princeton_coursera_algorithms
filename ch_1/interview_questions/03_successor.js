@@ -17,6 +17,7 @@ class Node{
 
 class Successor{
   constructor(N){
+    this.size = N;
     for(let i=0; i<N; i++){
       if (i == 0 ){
         this.last = new Node(i, null);
@@ -27,6 +28,15 @@ class Successor{
       }
     }
   }
+  find(p){
+    let int = this.first.int;
+    let node = this.first;
+    while (node.int != p){
+      if (! node) { break; }
+      node = node.next;
+    }
+    return node;
+  }
   remove(p){
     let int = this.first.int;
     let node = this.first;
@@ -36,11 +46,19 @@ class Successor{
       node = node.next;
       int = node.int;
     }
+    this.size--;
+    prevNode.next = node.next;
+    return node;
   }
   successor(p){
     return p.next;    
   }
 }
 
-let s = new Successor(10);
-console.log('INITIAL SUCCESSOR', s);
+let successor = new Successor(10);
+console.log('INITIAL SUCCESSOR', successor);
+console.log(successor.remove(1));
+console.log('SUCCESSOR REMOVED', successor);
+let node = successor.find(2);
+console.log('SUCCESSOR', node.int, successor.successor(node));
+
