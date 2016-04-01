@@ -34,18 +34,22 @@ class BinarySearch{
 class AlternateBinarySearch{
   constructor(){ }
   findMax(arr){
+    // example array = [10, 40, 80, 70]; hi=3, lo=0, mid=0 + (3-0)/2 = 1, mid-1 = 0;
+    // 1st step => lo = 3
     console.log('FIND MAX', arr);
     let lo = 0, hi = arr.length-1;
-    while (arr[Math.floor(lo + (hi - lo)/2)] > arr[Math.floor(lo + (hi - lo)/2) - 1]){
-      let mid = Math.floor(lo + (hi - lo)/2);
+    let mid = Math.floor(lo + (hi - lo)/2); // 1
+    console.log('INITIAL MID', mid);
+    while (lo <= hi){
+      mid = Math.floor(lo + (hi - lo)/2);
       console.log('MID', mid);
-      if (arr[mid] > arr[mid+1] && arr[mid] > arr[mid-1]){
-        return mid;
-      } else if (arr[mid] < arr[mid-1]){
-        hi = mid - 1; 
-      } else if (arr[mid] < arr[mid-1]){
-        lo = mid + 1;
-      }
+      if (arr[mid] > arr[mid-1] && arr[mid] > arr[mid+1]){
+       return mid;
+      } else if (arr[mid] > arr[mid-1] && arr[mid] < arr[mid+1]){ // number is in first half - make mid new low
+        lo = mid;
+      } else if (arr[mid] < arr[mid-1] && arr[mid] > arr[mid+1]){ // number is in second half - make mid new high
+        hi = mid;
+      } 
     }
   }
 };
