@@ -1,0 +1,14 @@
+{
+  "name": "interview_questions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "social.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
