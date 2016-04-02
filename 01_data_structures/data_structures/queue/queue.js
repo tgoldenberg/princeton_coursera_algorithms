@@ -1,8 +1,5 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-
 class ResizingArrayStack{
   constructor(){
     this.N = 0;

@@ -1,8 +1,5 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-
 class Node{
   constructor(item, next){
     this.item = item;

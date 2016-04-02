@@ -1,19 +1,12 @@
 'use strict';
 
 const fs          = require('fs');
-const path        = require('path');
-const fileName    = './test_1.txt';
-// const fileName    = './uf_data.txt';
+const fileName    = './uf_data.txt';
 
 class UF{
   constructor(N){
     this.count = N;
-    let arr = new Array();
-    for (let i=0; i<N; i++){
-      arr[i] = i;
-    }
-    this.ids = arr;
-
+    this.ids = new Array(N).fill(0).map((v, i) => i);
   }
   _count(){
     return this.count;
@@ -28,7 +21,7 @@ class UF{
     return p;
   }
   _union(p, q){
-    this.ids[p] = this._find(q);
+    this.ids[p] = q;
   }
 };
 
@@ -42,12 +35,10 @@ console.log('UF', uf, count);
 lines.forEach((line) => {
   if (! line) {return;}
   let parts = line.split(' '),
-      p = parts[0],
-      q = parts[1];
-  if (uf._connected(p, 1)) {
-    return;
-  }
+      p     = parts[0],
+      q     = parts[1];
   uf._union(p, q);
 });
 
 console.log(uf._count() + ' components', uf);
+console.log('UF', uf);

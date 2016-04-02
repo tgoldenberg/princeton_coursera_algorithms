@@ -14,5 +14,36 @@
  *   algorithm should be linear in the number of nodes in the data structure.
  *
  * You may not modify the structure of the linked list.
- *
- 
+ */
+'use strict';
+
+class Node{
+  constructor(item, next){
+    this.value = item;
+    this.next = next;
+  }
+};
+
+class LinkedList{
+  constructor(){ 
+    this.first = null;
+  }
+  addNode(item){
+    let oldfirst = this.first;
+    this.first = new Node(item, oldfirst);
+  }
+  toString(){
+    let next = this.first.next;
+    while (!! next){
+  }
+};
+
+let list = new LinkedList();
+list.addNode(1);
+list.addNode(5);
+list.addNode(30);
+list.addNode(2);
+let first = list.first;
+list.addNode(5);
+list.first = first;
+console.log('LIST', list);

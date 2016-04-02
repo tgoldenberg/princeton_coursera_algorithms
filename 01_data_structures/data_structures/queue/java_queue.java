@@ -1,4 +1,5 @@
 import java.util.Iterator;
+// Resizing arr stack - should double when reaches capacity, and 1/2 when reaches 1/4 capacity
 public class ResizingArrayStack<Item> implements Iterable<Item>
 {
   private Item[] a = (Item[]) new Object[1];

@@ -1,13 +1,9 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-
 class BinarySearch{
   constructor(){}
   rank(key, a){
-    let lo = 0,
-        hi = a.length-1;
+    let lo = 0, hi = a.length-1;
     while (lo <= hi){
       let mid = Math.floor(lo + (hi - lo) / 2);
       if (key < a[mid]) {

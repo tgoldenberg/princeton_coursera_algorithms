@@ -6,13 +6,9 @@ var fileName = '../union_find/uf_data.txt';
 
 class WeightedUnionFindUF{
   constructor(N){
-    this.id = new Array(N);
+    this.id = new Array(N).fill(0).map((v,i) => i);
     this.sz = new Array(N).fill(1);
     this.count = N;
-    for (let i=0; i<N; i++){
-      // this.sz[i] = i;
-      this.id[i] = i;
-    }
   }
   _count(){
     return this.count;
@@ -30,11 +26,9 @@ class WeightedUnionFindUF{
     console.log('PARAMS', p, q);
     let i = this.find(p);
     let j = this.find(q);
-    console.log('UNION', i, j, this.sz[i], this.sz[j], this.id);
-    if (i == j){
-      return;
-    }
-    if (this.sz[i] < this.sz[j]){
+    if (i == j) { 
+      return; 
+    } else if (this.sz[i] < this.sz[j]){
       this.id[i] = j;
       this.sz[j] += this.sz[i];
     } else {
@@ -57,10 +51,8 @@ lines.forEach((line) => {
   let parts = line.split(' '),
       p = parseInt(parts[0]),
       q = parseInt(parts[1]);
-//  if (uf.connected(p, 1)) {
-//    return;
-//  }
   uf.union(p, q);
 });
 
 console.log(uf._count() + ' components', uf);
+console.log('UF', uf);
