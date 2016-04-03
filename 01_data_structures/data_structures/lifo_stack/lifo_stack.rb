@@ -30,4 +30,17 @@ class LifoStack
 		@head = @head.next
 		item
 	end
+
+	def each
+		node = @head
+		while node.item
+			yield node.item
+			node = node.next
+		end
+	end
+
+	def find(v)
+		each {|i| return i if i == v}
+	end
+
 end
