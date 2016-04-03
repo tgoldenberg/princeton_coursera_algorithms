@@ -1,8 +1,6 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
-var fileName = '../union_find/uf_data.txt';
 
 class WeightedUnionFindUF{
   constructor(N){
@@ -26,9 +24,8 @@ class WeightedUnionFindUF{
     console.log('PARAMS', p, q);
     let i = this.find(p);
     let j = this.find(q);
-    if (i == j) { 
-      return; 
-    } else if (this.sz[i] < this.sz[j]){
+    if (i == j) { return; }
+    if (this.sz[i] < this.sz[j]){
       this.id[i] = j;
       this.sz[j] += this.sz[i];
     } else {
@@ -39,10 +36,10 @@ class WeightedUnionFindUF{
   }
 };
 
-let file  = fs.readFileSync(fileName, 'utf8'),
+let file  = fs.readFileSync(process.argv[2], 'utf8'),
     lines = file.split('\n'),
     N     = lines.length-1,
-    uf    = new WeightedUnionFindUF(N),
+    uf    = new WeightedUnionFindUF(10),
     count = uf._count();
 console.log('UF', uf, count);
 
@@ -54,5 +51,4 @@ lines.forEach((line) => {
   uf.union(p, q);
 });
 
-console.log(uf._count() + ' components', uf);
-console.log('UF', uf);
+console.log('UF', uf.id.join(' '));

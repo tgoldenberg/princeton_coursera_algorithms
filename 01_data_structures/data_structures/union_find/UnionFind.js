@@ -52,9 +52,11 @@ lines.forEach((line) => {
 console.log('UF', uf.ids.join(' '));
 
 let size = 10;
+/*
 while (size < 10000000){
   
 }
+*/
 /*
 let uf = new UF(10);
 let unions = '8-9 0-7 4-3 2-4 5-8 2-9';
