@@ -34,7 +34,6 @@ class Percolation{
     return root;
   }
   union(p, q){
-    console.log('UNION', p, q);
     let pID = this.find(p);
     let qID = this.find(q);
     let lowest = pID[0] < qID[0] ? pID : qID;
@@ -71,7 +70,6 @@ class Percolation{
       for(let x=0; x<this.N; x++){
         DIRECTIONS.forEach((d) => {
           let dx = d.value[1], dy = d.value[0];
-          console.log('DX DY', dx, dy);
           if (dx < 0 || dy < 0)      { return; }
           else if (dx >= this.N || dy >= this.N) { return; }
           else if (! this.grid[dy][dx].blocked){
@@ -119,17 +117,30 @@ class Percolation{
   }
 };
 
-let percolator = new Percolation(3);
-percolator.render();
-let count = 0;
-let connected = false;
-while (! connected) {
-  percolator.open();
-  connected = percolator.isConnected();
-  percolator.render();
-  percolator.showGrid();
-  count++;
+
+function runPercolator(N){
+  let percolator = new Percolation(N);
+  let count = 0;
+  let connected = false;
+  while (! connected) {
+    percolator.open();
+    connected = percolator.isConnected();
+    count++;
+  }
+  return count;
+};
+
+let size = 10;
+while (size < 1000000000) {
+  let d1 = new Date().valueOf();
+  let c = runPercolator(size);
+  let d2 = new Date().valueOf();
+  console.log(`With size ${size}, algorithm completed in ${c} milliseconds`);
+  size*=10;
 }
-console.log('\n');
-percolator.render();
-console.log('COUNT', count);
+
+/*
+  With size 10, algorithm completed in 11 milliseconds
+  With size 100, algorithm completed in 797 milliseconds*
+*/
+
