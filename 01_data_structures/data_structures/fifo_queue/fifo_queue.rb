@@ -2,7 +2,7 @@ class Node
 
 	attr_accessor :item, :next
 
-	def intialize(args = {})
+	def initialize(args = {})
 		@item = args[:i] || nil
 		@next = args[:n] || nil
 	end
