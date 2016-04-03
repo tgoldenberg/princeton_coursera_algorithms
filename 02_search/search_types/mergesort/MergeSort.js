@@ -60,7 +60,7 @@ class MergeSort{
 
 let mergeSort = new MergeSort();
 let size = 100;
-while (size < 100000000){ // JS fails at 10mil
+while (size < 10000000000){ // JS fails at 10mil
   let arr = ArrayGenerator(size, 1000);
   let start = new Date();
   let sorted = mergeSort.mergeSort(arr);
