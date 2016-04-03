@@ -1,10 +1,10 @@
 'use strict';
 
 const DIRECTIONS = [
+  {label: 'SOUTH', value: [0, -1]},
   {label: 'WEST',  value: [-1, 0]},
   {label: 'EAST',  value: [1, 0]},
   {label: 'NORTH', value: [0, 1]},
-  {label: 'SOUTH', value: [0, -1]}
 ];
 
 class Percolation{
@@ -14,7 +14,10 @@ class Percolation{
                     .fill(0)
                     .map((v, i) => new Array(N)
                     .fill(0)
-                    .map((v, j) => ({blocked: true, root: [i, j]})));
+                    .map((v, j) => ({
+                      blocked : true,
+                      root    : [i, j]
+                    })));
   }
   randomIndex(){
     let rand1 = Math.floor(Math.random()*this.N);
@@ -34,11 +37,12 @@ class Percolation{
     console.log('UNION', p, q);
     let pID = this.find(p);
     let qID = this.find(q);
+    let lowest = pID[0] < qID[0] ? pID : qID;
     for(let y=0; y<this.N; y++){
       for(let x=0; x<this.N; x++){
         let t = this.grid[y][x];
         if (! t.blocked && t.root.join('-') == pID.join('-')){
-          this.grid[y][x].root = qID;
+          this.grid[y][x].root = lowest;
         }
       }
     }
@@ -47,36 +51,42 @@ class Percolation{
     let indices = this.randomIndex();
     let i = indices[0];
     let j = indices[1];
+    while (! this.grid[i][j].blocked) {
+      indices = this.randomIndex();
+      i = indices[0];
+      j = indices[1];
+    }
     this.grid[i][j].blocked = false;
-    DIRECTIONS.forEach((d) => {
-      let x = d.value[1], y = d.value[0];
-      if (x < 0 || y < 0)             { return; } 
-      if (x >= this.N || y >= this.N) { return; }
-      if (! this.grid[y][x].blocked) {
-        this.union([i,j], d.value);
-      }
-    });
   }
   isFull(i, j){
-    return this.grid[i][j].blocked;
+    let ID = this.find([i, j]);
+    if (ID[0] == 0) { return true; }
+    else            { return false; }
   }
   isOpen(i, j){
     return ! this.grid[i][j].blocked;
   }
-  isConnected(){
-    let res = false;
-    for (let x=0; x<this.N; x++){
-      console.log('TOP', this.find([0,x]));
-      console.log('BOTTOM', this.find([this.N-1, x]));
-      if (this.find([0, x])[0] == this.N-1){
-        res = true;
-      }
-      if (this.find([this.N-1, x])[0] == 0){
-        res = true;
+  connect(){
+    for(let y=0; y<this.N; y++){
+      for(let x=0; x<this.N; x++){
+        DIRECTIONS.forEach((d) => {
+          let dx = d.value[1], dy = d.value[0];
+          console.log('DX DY', dx, dy);
+          if (dx < 0 || dy < 0)      { return; }
+          else if (dx >= this.N || dy >= this.N) { return; }
+          else if (! this.grid[dy][dx].blocked){
+            this.union([y, x], d.value);
+          }
+        });
       }
     }
-    console.log('IS CONNECTED', res);
-    return res;
+  }
+  isConnected(){
+    this.connect();
+    for(let i=0; i<this.N; i++){
+      if (this.isFull(this.N-1, i)) { return true; }
+    }   
+    return false;
   }
   showGrid(){
     this.grid.forEach((g, i) => {
@@ -113,10 +123,9 @@ let percolator = new Percolation(3);
 percolator.render();
 let count = 0;
 let connected = false;
-for (let i=0; i<10; i++){
+while (! connected) {
   percolator.open();
   connected = percolator.isConnected();
-  console.log('CONNECTED', connected);
   percolator.render();
   percolator.showGrid();
   count++;
