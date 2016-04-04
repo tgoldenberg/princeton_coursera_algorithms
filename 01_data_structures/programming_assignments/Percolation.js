@@ -130,6 +130,7 @@ function runPercolator(N){
   return count;
 };
 
+/*
 let size = 10;
 while (size < 1000000000) {
   let d1 = new Date().valueOf();
@@ -138,9 +139,10 @@ while (size < 1000000000) {
   console.log(`With size ${size}, algorithm completed in ${c} milliseconds`);
   size*=10;
 }
-
+*/
 /*
   With size 10, algorithm completed in 11 milliseconds
   With size 100, algorithm completed in 797 milliseconds*
 */
 
+module.exports = runPercolator;
