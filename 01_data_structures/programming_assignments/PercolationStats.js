@@ -20,12 +20,16 @@ class PercolationStats{
       this.speed.push(d2 - d1);
     } 
     console.log(this.mean());
+    console.log(this.stddev());
   }
   mean(){
     if (! this.speed.length) { return; }
     return this.speed.reduce((p,n) => p+n) / this.speed.length; 
   }
   stddev(){
+    if (! this.speed.length || ! this.counts.length)
+    { return; }
+    return Math.max(this.counts) - Math.min(this.counts);
   }
   confidenceLo(){
 
