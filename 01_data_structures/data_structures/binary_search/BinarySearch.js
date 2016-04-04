@@ -1,5 +1,8 @@
 'use strict';
 
+var fs = require('fs');
+var path = require('path');
+
 class BinarySearch{
   constructor(){}
   rank(key, a){
@@ -27,16 +30,16 @@ function generateArray(N){
   return merge.mergeSort(arr);
 };
 
+fs.writeFile('results.txt', 'BINARY SEARCH RESULTS\n', function(){});
 function testSearch(N){
   let d1 = new Date().valueOf();
   let arr = generateArray(N);
-  console.log('ARR LENGTH', arr.length);
   let query = Math.floor(Math.random()*N);
-  console.log('QUERY', arr.slice(query-3, query+3));
   let res = search.rank(arr[query], arr);
   let d2 = new Date().valueOf();
-  console.log(`Query for ${arr[query]} returned ${res} for array size ${arr.length} in ${d2 - d1} milliseconds`);
-  console.log(`Expected answer: ${arr[query]}, Actual: ${arr[res]}`);
+  let text = `Query for ${arr[query]} returned ${res} for array size ${arr.length} in ${d2 - d1} milliseconds\n`;
+  fs.appendFile('results.txt', text, function(){});
+  console.log(text);
 };
 
 let size = 10;

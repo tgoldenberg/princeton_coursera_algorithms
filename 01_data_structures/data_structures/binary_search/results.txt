@@ -1,0 +1,8 @@
+BINARY SEARCH RESULTS
+Query for 2 returned 1 for array size 10 in 2 milliseconds
+Query for 44 returned 48 for array size 100 in 0 milliseconds
+Query for 497 returned 483 for array size 1000 in 2 milliseconds
+Query for 6834 returned 6878 for array size 10000 in 7 milliseconds
+Query for 65031 returned 65057 for array size 100000 in 63 milliseconds
+Query for 253436 returned 254156 for array size 1000000 in 730 milliseconds
+Query for 6387198 returned 6387727 for array size 10000000 in 4137 milliseconds
