@@ -1,0 +1,5 @@
+RESULTS OF SELECTION SORTSort of 10 elements returned true in 2 milliseconds
+Sort of 100 elements returned true in 2 milliseconds
+Sort of 1000 elements returned true in 16 milliseconds
+Sort of 10000 elements returned true in 287 milliseconds
+Sort of 100000 elements returned true in 22655 milliseconds
