@@ -43,16 +43,19 @@ function runSort(N){
   let arr = new Array(N).fill(0).map(() => Math.floor(Math.random()*N));
   let d1 = new Date().valueOf();
   let sorted = shell.sort(arr);
-  let result = shell.isSorted(sorted);
   let d2 = new Date().valueOf();
+  let result = shell.isSorted(sorted);
   let msg = `${N} elements returned ${result} in ${d2 - d1} milliseconds\n`;
   fs.appendFile(filename, msg);
   console.log(msg);
 };
 
+/*
 let size = 10;
 fs.writeFile(filename, 'RESULTS FOR SHELLSORT\n');
 while (size < 10000000){
   runSort(size);
   size *= 10;
 }
+*/
+module.exports = Shell;

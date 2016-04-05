@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 
-class SelectionSort{
+class Selection{
   constructor() { }
   exch(arr, i, j){
     let temp = arr[i];
@@ -25,7 +25,7 @@ class SelectionSort{
   }
 };
 
-let selection = new SelectionSort();
+let selection = new Selection();
 
 function runSort(N){
   let arr = new Array(N).fill(0).map(() => Math.floor(Math.random()*N));
@@ -39,6 +39,7 @@ function isSorted(arr){
   return true;
 };
 
+/*
 let size = 10;
 let filename = process.argv[2];
 fs.writeFile(filename, 'RESULTS OF SELECTION SORT');
@@ -53,3 +54,6 @@ while (size < 1000000){
   size *= 10;
 }
 
+*/ 
+
+module.exports = Selection;
