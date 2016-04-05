@@ -1,0 +1,7 @@
+RESULTS FOR SHELLSORT
+10 elements returned true in 1 milliseconds
+100 elements returned true in 0 milliseconds
+1000 elements returned true in 1 milliseconds
+10000 elements returned true in 22 milliseconds
+100000 elements returned true in 356 milliseconds
+1000000 elements returned true in 3131 milliseconds

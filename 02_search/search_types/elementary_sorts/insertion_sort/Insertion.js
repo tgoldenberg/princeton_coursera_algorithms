@@ -32,6 +32,7 @@ function isSorted(arr){
 };
 
 let filename = process.argv[2];
+console.log('FILENAME', filename);
 
 function runSort(N){
   let d1 = new Date().valueOf();
@@ -46,7 +47,7 @@ function runSort(N){
 
 fs.writeFile(filename, 'RESULTS FOR INSERTION SORT');
 let size = 10;
-while (size < 10000000){
+while (size < 1000000){
   runSort(size);
   size *= 10;
 }
