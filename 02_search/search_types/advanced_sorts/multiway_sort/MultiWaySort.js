@@ -13,6 +13,7 @@ class In{
 
 class IndexMinPQ{
   constructor() { }
+  isEmpty() { }
   delMin() { }
   insert() { }
   minKey() { }
@@ -32,7 +33,7 @@ class MultiWay{
     let pq = new IndexMinPQ();
     for (let i=0; i<N; i++){
       if (! streams[i].isEmpty()){
-        pq.insert(i, streams[i].readString());
+        pq.insert(i, streams[i]);
       }
     }
     while (! pq.isEmpty())
