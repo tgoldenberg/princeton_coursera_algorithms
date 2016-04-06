@@ -45,9 +45,12 @@ function runSort(N){
   console.log(msg);
 };
 
+/*
 fs.writeFile(filename, 'RESULTS FOR INSERTION SORT');
 let size = 10;
 while (size < 1000000){
   runSort(size);
   size *= 10;
 }
+*/
+module.exports = Insertion;

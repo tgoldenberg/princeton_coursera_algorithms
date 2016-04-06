@@ -33,8 +33,13 @@ class LinkedList{
     this.first = new Node(item, oldfirst);
   }
   toString(){
-    let next = this.first.next;
-    while (!! next){
+    let c = this.first;
+    let values = [c.value];
+    while (c.next != null){
+      c = c.next;
+      values.push(c.value);
+    }
+    console.log(values.join(', '));
   }
 };
 
@@ -43,7 +48,9 @@ list.addNode(1);
 list.addNode(5);
 list.addNode(30);
 list.addNode(2);
+list.toString();
 let first = list.first;
 list.addNode(5);
 list.first = first;
 console.log('LIST', list);
+list.toString();
