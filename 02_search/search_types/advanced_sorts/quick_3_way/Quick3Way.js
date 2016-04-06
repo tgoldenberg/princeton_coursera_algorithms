@@ -5,7 +5,7 @@ var fs = require('fs');
 class Quick3Way{
   constructor(arr) { 
     this.arr = this.shuffle(arr);
-    console.log('SHUFFLED ARRAY', this.arr);
+    // console.log('SHUFFLED ARRAY', this.arr);
   }
   shuffle(arr){
     let idx, temp;
@@ -48,19 +48,19 @@ function isSorted(arr){
 
 function runSort(N){
   let arr = new Array(N).fill(0).map(() => Math.floor(Math.random()*N));
-  console.log('ORIGINAL ARRAY', arr);
+  // console.log('ORIGINAL ARRAY', arr);
   let d1 = new Date().valueOf();
   let quick = new Quick3Way(arr);
   let sorted = quick.sort();
   let result = isSorted(sorted);
-  console.log('SORTED ARRAY', sorted, result);
+  // console.log('SORTED ARRAY', sorted, result);
   let d2 = new Date().valueOf();
   let msg = `Sort return ${result} for size ${N} in ${d2 - d1} milliseconds\n`;
   console.log(msg);
 };
 
 let size = 10; 
-while (size < 11){
+while (size < 10000000000){
   runSort(size);
   size *= 10;
 }
