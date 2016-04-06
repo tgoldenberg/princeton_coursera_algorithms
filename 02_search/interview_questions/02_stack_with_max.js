@@ -41,8 +41,19 @@ class MaxStack extends Stack{
     super(props);
   }
   max(){
-    
-    /* sort array and search with binary search */
+    let first = this.first;
+    let max = this.first.value;
+    let maxNode = this.first;
+    while (first.next != null){
+      first = first.next;
+      console.log('FIRST VALUE', first.value, max);
+      if (first.value > max){
+        max = first.value;
+        maxNode = first;
+      }
+    }
+    console.log('MAX', max);
+    return maxNode;
   }
   push(item){
     let oldfirst = this.first;
